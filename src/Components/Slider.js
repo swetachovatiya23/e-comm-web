@@ -1,20 +1,24 @@
-import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons';
-import styled from "styled-components";
+import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 import { useState } from "react";
-import { sliderItems } from "../data"; 
+import styled from "styled-components";
+import { sliderItems } from "../data";
 
 
+//For Main Container
 const Container = styled.div`
-    display: flex;
-    margin-right:170px;
-    justify-content: space-between;    
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  
 `;
 
 //For Arrow styling
 const Arrow = styled.div`
-  width: 60px;
-  height: 60px;
-  background-color: hotpink;
+  width: 50px;
+  height: 50px;
+  background-color: #fff7f7;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -24,11 +28,9 @@ const Arrow = styled.div`
   bottom: 0;
   left: ${(props) => props.direction === "left" && "10px"};
   right: ${(props) => props.direction === "right" && "10px"};
-  margin-top:2300px;
-  margin-right: 700px;
-  margin-left:900px;
+  margin: auto;
   cursor: pointer;
-  opacity: 1;
+  opacity: 0.5;
   z-index: 2;
 `;
 
@@ -42,7 +44,7 @@ const Wrapper = styled.div`
   transform: translateX(${(props) => props.slideIndex * -100}vw);
 `;
 
-//For images, Title, Discriptions
+//For Sliders
 const Slide = styled.div`
   width: 100vw;
   height: 100vh;
@@ -51,50 +53,45 @@ const Slide = styled.div`
   background-color: #${(props) => props.bg};
 `;
 
-//For Image Container
+//For ImageContainer
 const ImgContainer = styled.div`
-  height: 90%;
+  height: 100%;
+  flex: 1;
 `;
 
 
+//For Image
 const Image = styled.img`
-  height: 90%;
-  
+  height: 80%;
 `;
 
-//For Info Container
+
+//For InfoContainer
 const InfoContainer = styled.div`
   flex: 1;
-  // padding: 20px;
+  padding: 50px;
 `;
 
 //For Title
 const Title = styled.h1`
-  margin:20px;
-  font-size: 60px;
-  display:flex;
-  color:blue;
+  font-size: 70px;
 `;
 
-//For Discription
+//For Imge Description
 const Desc = styled.p`
-  margin: 50px 20px;
+  margin: 50px 0px;
   font-size: 20px;
   font-weight: 500;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 `;
 
-
-//For Buttons
-const Button = styled.div`
+//For Shope Now Buttons
+const Button = styled.button`
   padding: 10px;
   font-size: 20px;
-  background-color: orange;
+  background-color: transparent;
   cursor: pointer;
-  margin-left:20px;
-  // margin-top:300px;
-  margin-right:200px;
-  `;
+`;
 
 
 
@@ -112,40 +109,38 @@ const Slider = () => {
         };
       
         return (
- 
-   
-            <Container>
-            <head>
-            <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86"/>
-            </head>
-              <Wrapper slideIndex={slideIndex}>
-                {sliderItems.map((item) => (
-                  <Slide bg={item.bg} key={item.id}>
+          <Container>
 
-                    <ImgContainer>
-                      <Image src={item.img} />
-                    </ImgContainer>
-                    
-                    <InfoContainer>
-                      <Title>{item.title}</Title>
-                      <Desc>{item.desc}</Desc>
-                      <Button>SHOP NOW</Button>
-                    </InfoContainer>
-                    
-                  </Slide>
-                ))}
-              </Wrapper>
+            <Arrow direction="left" onClick={() => handleClick("left")}>
+              <ArrowLeftOutlined />
+            </Arrow>
 
-              <Arrow direction="left" onClick={() => handleClick("left")}>
-                <ArrowLeftOutlined />
-              </Arrow>
-              <Arrow direction="right" onClick={() => handleClick("right")}>
-                <ArrowRightOutlined />
-              </Arrow>
-            </Container>
-          );
-        };
-        
+            <Wrapper slideIndex={slideIndex}>
+              {sliderItems.map((item) => (
+                <Slide bg={item.bg} key={item.id}>
+
+                  <ImgContainer>
+                    <Image src={item.img} />
+                  </ImgContainer>
+
+                  <InfoContainer>
+                    <Title>{item.title}</Title>
+                    <Desc>{item.desc}</Desc>
+                    <Button>SHOW NOW</Button>
+                  </InfoContainer>
+
+                </Slide>
+              ))}
+
+            </Wrapper>
+            <Arrow direction="right" onClick={() => handleClick("right")}>
+              <ArrowRightOutlined />
+            </Arrow>
+
+          </Container>
+        );
+      };
+      
         
         export default Slider;
          
