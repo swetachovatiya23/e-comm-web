@@ -1,5 +1,5 @@
 // import { Badge } from "@material-ui/core";
-// import { Search, ShoppingCartOutlined } from "@material-ui/icons";
+// import SearchIcon from '@mui/icons-material/Search';
 import React from "react";
 import styled from "styled-components";
 
@@ -73,10 +73,10 @@ const Navbar = () => {
       <Wrapper>
         <Left>
           <Language>EN</Language>
-          {/* <SearchContainer>
+          <SearchContainer>
             <Input placeholder="Search" />
-            <Search style={{ color: "gray", fontSize: 16 }} />
-          </SearchContainer> */}
+            {/* <Search style={{ color: "gray", fontSize: 16 }} /> */}
+          </SearchContainer>
         </Left>
         <Center>
           <Logo>sweta</Logo>
