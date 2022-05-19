@@ -1,10 +1,11 @@
 import React from 'react'
-import Announcement from '../Components/Announcement'
-import Categories from '../Components/Categories'
-import Navbar from '../Components/Navbar'
-import Newsletter from '../Components/Newsletter'
-import Products from '../Components/Products'
-import Slider from '../Components/Slider'
+import Announcement from '../components/Announcement'
+import Categories from '../components/Categories'
+import Footer from '../components/Footer'
+import Navbar from '../components/Navbar'
+import Newsletter from '../components/Newsletter'
+import Products from '../components/Products'
+import Slider from '../components/Slider'
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <Categories/>
             <Products/>
             <Newsletter/>
+            <Footer/>
             
         </div>
     )
