@@ -1,11 +1,15 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
 // require('dotenv').config({ path: require('find-config')('.env') });
 
+dotenv.config();
 
-mongoose.connect("mongodb+srv://swetac:shell@cluster0.nvuu4.mongodb.net/?retryWrites=true&w=majority"
+
+mongoose.connect(
+    process.env.MONGO_URL
 ).then(() => console.log("DBConnection Successfull"))
 .catch((err) => {
     console.log(err);
