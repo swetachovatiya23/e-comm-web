@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
+const jwt = require("jsonwebtoken");
 
 //REGISTER
 router.post("/register", async (req, res) => {
@@ -49,13 +50,28 @@ router.post('/login', async (req, res) => {
       console.log(originalPassword)
       const inputPassword = req.body.password;
       
-      (originalPassword != req.body.password) && 
+      originalPassword != req.body.password && 
           res.status(401).json("Wrong Password");
 
 
+      // JSON web Token, properties of user _id and isAdmin will go inside the token so when 
+      // we will try to delte the user we are going to check id  inside Json web token 
+      // if it will equals to _id then it means this user belongs to our client so then can use CRUD
+      // If the user is admin then he can use CRUD here
+
+      //JWT_SEC will expire in 3 days and user has to log in agin
+
+          const accessToken = jwt.sign(
+            {
+                id: user._id,
+                isAdmin: user.isAdmin,
+            },
+            process.env.JWT_SEC,
+                {expiresIn:"3d"}
+            );
 
       const { password, ...others } = user._doc;  
-      res.status(200).json(others);
+      res.status(200).json({...others, accessToken});
 
   }catch(err){
     console.log(err)
