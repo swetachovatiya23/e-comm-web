@@ -19,10 +19,50 @@ router.post("/register", async (req, res) => {
         const savedUser = await newUser.save();
         res.status(201).json(savedUser);
       } catch (err) {
+        console.log(err)
         res.status(500).json(err);
+        
       }
     
     });
+
+
+  //LOGIN
+
+router.post('/login', async (req, res) => {
+  try{
+      const user = await User.findOne(
+          {
+              username: req.body.username
+          }
+      );
+
+      !user && res.status(401).json("Wrong User Name");
+
+      const hashedPassword = CryptoJS.AES.decrypt(
+          user.password,
+          process.env.PASS_SEC
+      );
+
+
+      const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
+      console.log(originalPassword)
+      const inputPassword = req.body.password;
+      
+      (originalPassword != req.body.password) && 
+          res.status(401).json("Wrong Password");
+
+
+
+      const { password, ...others } = user._doc;  
+      res.status(200).json(others);
+
+  }catch(err){
+    console.log(err)
+      res.status(500).json(err);
+  }
+
+});
  
  
 
