@@ -29,17 +29,15 @@ const App = () => {
           <Cart />
         </Route>
 
-        {/* <Route path="/product/:id">
-          <Product />
+        <Route path="/login">
+          <Login />
         </Route>
 
-        <Route path="/product/:id">
-          <Product />
+        <Route path="/register">
+          <Register />
         </Route>
 
-        <Route path="/product/:id">
-          <Product />
-        </Route> */}
+        
 
 
       </Switch>
