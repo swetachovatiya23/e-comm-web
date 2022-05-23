@@ -29,15 +29,17 @@ const App = () => {
           <Cart />
         </Route>
 
-        <Route path="/login">
-          <Login />
+        <Route path="/product/:id">
+          <Product />
+        </Route>
+
+        <Route path="/cart">
+          <Cart />
         </Route>
 
         <Route path="/register">
           <Register />
         </Route>
-
-        
 
 
       </Switch>
