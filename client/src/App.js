@@ -25,9 +25,22 @@ const App = () => {
           <ProductList/>
         </Route>
 
+        <Route path="/cart">
+          <Cart />
+        </Route>
+
+        {/* <Route path="/product/:id">
+          <Product />
+        </Route>
+
         <Route path="/product/:id">
           <Product />
         </Route>
+
+        <Route path="/product/:id">
+          <Product />
+        </Route> */}
+
 
       </Switch>
     </Router>
