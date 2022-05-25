@@ -58,6 +58,7 @@ router.get("/find/:id", async (req, res) => {
 
 //GET ALL PRODUCTS
 router.get("/", async (req, res) => {
+  console.log(req.query)
   const qNew = req.query.new;
   const qCategory = req.query.category;
   try {
@@ -74,7 +75,7 @@ router.get("/", async (req, res) => {
     } else {
       products = await Product.find();
     }
-
+   console.log(products)
     res.status(200).json(products);
   } catch (err) {
     res.status(500).json(err);
